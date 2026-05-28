@@ -1,8 +1,9 @@
 {
   "name": "Capsule Wardrobe Builder",
   "short_name": "capsule-ward",
-  "start_url": "/",
+  "start_url": "/capsule-wardrobe-builder/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#6366f1"
+  "theme_color": "#6366f1",
+  "scope": "/capsule-wardrobe-builder/"
 }
