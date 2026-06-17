@@ -61,8 +61,9 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .app-bar .bar-cta { background: linear-gradient(135deg,var(--primary),var(--accent)); color: #fff; padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; }
         @media (max-width: 640px){ .app-bar nav .hide-sp{ display:none; } }
         /* Hero band (dashboard score intro) */
-        .svc-hero { background: linear-gradient(135deg,#eef2ff 0%,#faf0fb 100%); padding: 30px 16px 40px; }
-        .svc-hero-inner { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: center; }
+        .svc-hero { background: linear-gradient(140deg,#eef2ff 0%,#f1ecfd 34%,#f7edfb 64%,#fde7f3 100%); padding: 30px 16px 40px; position: relative; overflow: hidden; }
+        .svc-hero::before { content:""; position:absolute; inset:0; background: radial-gradient(58% 70% at 82% 16%,rgba(236,72,153,.09),transparent 60%), radial-gradient(52% 60% at 10% 92%,rgba(99,102,241,.11),transparent 62%); pointer-events:none; }
+        .svc-hero-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: center; }
         .svc-hero h1 { font-size: 30px; line-height: 1.35; font-weight: 800; color: var(--ink); margin-bottom: 14px; letter-spacing: -.01em; }
         .svc-hero h1 .hl { color: var(--primary); }
         .svc-hero p.lead { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
@@ -170,7 +171,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           </div>
         </div>
         <div class="hero-photo">
-          <img src="assets/photos/photo_01.jpg" alt="カプセルワードローブのコーディネート例" loading="eager" width="600" height="450">
+          <img src="assets/photos/photo_13.jpg" alt="カプセルワードローブのコーディネート例" loading="eager" width="600" height="450">
         </div>
       </div>
     </section>
@@ -384,9 +385,9 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <h2 class="section-title">おすすめコーディネート</h2>
           <p style="font-size:13px;color:#64748b;margin-bottom:14px;">天気・シーンに合わせて、手持ちのアイテムから最適な組み合わせをAIがご提案します。</p>
           <div class="photo-grid cols-3">
-            <div class="photo-tile tall"><img src="assets/photos/photo_02.jpg" alt="きれいめコーデ" loading="lazy"></div>
-            <div class="photo-tile tall"><img src="assets/photos/photo_03.jpg" alt="カジュアルコーデ" loading="lazy"></div>
-            <div class="photo-tile tall"><img src="assets/photos/photo_04.jpg" alt="オフィスコーデ" loading="lazy"></div>
+            <div class="photo-tile tall"><img src="assets/photos/photo_15.jpg" alt="きれいめコーデ" loading="lazy"></div>
+            <div class="photo-tile tall"><img src="assets/photos/photo_20.jpg" alt="カジュアルコーデ" loading="lazy"></div>
+            <div class="photo-tile tall"><img src="assets/photos/photo_17.jpg" alt="オフィスコーデ" loading="lazy"></div>
           </div>
         </div>
 
@@ -419,8 +420,8 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             <div class="photo-tile"><img src="assets/photos/photo_20.jpg" alt="実例" loading="lazy"></div>
             <div class="photo-tile"><img src="assets/photos/photo_21.jpg" alt="実例" loading="lazy"></div>
             <div class="photo-tile"><img src="assets/photos/photo_22.jpg" alt="実例" loading="lazy"></div>
-            <div class="photo-tile"><img src="assets/photos/photo_05.jpg" alt="実例" loading="lazy"></div>
-            <div class="photo-tile"><img src="assets/photos/photo_06.jpg" alt="実例" loading="lazy"></div>
+            <div class="photo-tile"><img src="assets/photos/photo_09.jpg" alt="実例" loading="lazy"></div>
+            <div class="photo-tile"><img src="assets/photos/photo_11.jpg" alt="実例" loading="lazy"></div>
           </div>
         </div>
 
