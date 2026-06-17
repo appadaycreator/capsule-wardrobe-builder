@@ -86,6 +86,22 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         @media (max-width: 640px){ .photo-grid.cols-4{ grid-template-columns: repeat(2,1fr);} .photo-grid.cols-3{ grid-template-columns: repeat(2,1fr);} }
         .palette-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
         .swatch { width: 46px; height: 46px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.12); border: 3px solid #fff; }
+        /* Score summary (dashboard-style) */
+        .score-summary { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; background: linear-gradient(135deg,#eef2ff,#fdf2f8); border-radius: 16px; padding: 22px; }
+        .score-ring { position: relative; width: 130px; height: 130px; flex: 0 0 130px; }
+        .score-ring canvas { width: 130px; height: 130px; }
+        .score-ring .ring-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .score-ring .ring-label b { font-size: 30px; font-weight: 800; color: var(--primary-d); line-height: 1; }
+        .score-ring .ring-label span { font-size: 11px; color: var(--muted); margin-top: 2px; }
+        .score-summary .msg h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+        .score-summary .msg p { font-size: 13px; color: var(--muted); }
+        @media (max-width: 480px){ .score-summary { grid-template-columns: 1fr; text-align: center; justify-items: center; } }
+        .metric-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+        .metric { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 12px; text-align: center; box-shadow: 0 4px 14px rgba(99,102,241,.07); }
+        .metric .ic { font-size: 20px; margin-bottom: 6px; }
+        .metric .v { font-size: 22px; font-weight: 800; color: var(--primary-d); line-height: 1.1; }
+        .metric .l { font-size: 11px; color: var(--muted); margin-top: 4px; }
+        @media (max-width: 560px){ .metric-grid { grid-template-columns: repeat(2,1fr); } }
         .btn { background: linear-gradient(135deg,var(--primary),var(--accent)); color: white; border: none; padding: 14px 24px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; transition: transform .15s,box-shadow .2s; min-height: 48px; touch-action: manipulation; box-shadow: 0 8px 20px rgba(99,102,241,.28); }
         .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(99,102,241,.36); }
         .btn:active { transform: scale(0.98); }
@@ -276,12 +292,25 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <button class="btn" style="margin-top:20px;" onclick="calculate()">計算する</button>
 
           <div class="result" id="result" style="margin-top:16px;">
-            <!-- M4: グラフ・スコア表示 -->
-            <div class="card" style="text-align:center;margin-bottom:12px;">
-              <p style="font-size:12px;color:#888;margin-bottom:8px;">理想のカプセル数</p>
-              <div id="output" style="font-size:2.2rem;font-weight:700;color:#7c3aed;padding:12px 0;"></div>
-              <canvas id="scoreGauge" style="max-width:200px;margin:12px auto;display:block;"></canvas>
-              <p id="scoreText" style="font-size:12px;color:#666;margin-top:8px;"></p>
+            <!-- M4: スコアサマリー（ダッシュボード風） -->
+            <div class="card" style="margin-bottom:12px;">
+              <div class="score-summary">
+                <div class="score-ring">
+                  <canvas id="scoreGauge" width="130" height="130"></canvas>
+                  <div class="ring-label"><b id="output"></b><span>アイテム</span></div>
+                </div>
+                <div class="msg">
+                  <h3 id="scoreHeadline">あなたのカプセルワードローブ</h3>
+                  <p id="scoreText"></p>
+                </div>
+              </div>
+              <!-- 主要指標カード -->
+              <div class="metric-grid" style="margin-top:16px;">
+                <div class="metric"><div class="ic" aria-hidden="true">👕</div><div class="v" id="mItems">–</div><div class="l">アイテム数</div></div>
+                <div class="metric"><div class="ic" aria-hidden="true">🔄</div><div class="v" id="mVersatile">–</div><div class="l">着回し力</div></div>
+                <div class="metric"><div class="ic" aria-hidden="true">💰</div><div class="v" id="mCost">–</div><div class="l">コスパ</div></div>
+                <div class="metric"><div class="ic" aria-hidden="true">🌤️</div><div class="v" id="mSeason">–</div><div class="l">季節適応</div></div>
+              </div>
             </div>
 
             <!-- M6: 目標達成度（目標値が設定されている場合） -->
@@ -420,18 +449,6 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             </ol>
         </div>
 
-        <!-- FAQ セクション -->
-        <div class="card" style="margin-top:8px;">
-            <h2 style="font-size:15px;font-weight:700;margin-bottom:14px;color:#374151;">❓ よくある質問</h2>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-            
-            
-            
-            
-            
-            </div>
-        </div>
-
         <!-- SNSシェアCTA -->
         <div class="card" style="margin-top:8px;text-align:center;background:#f0f9ff;" role="complementary" aria-label="SNSシェア">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;">📣 友人・家族にシェアする</p>
@@ -494,38 +511,60 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       return { result, detail, breakdown, pricePerItem, target };
     }
 
-    // M4: スコアゲージをCanvas描画
+    // M4: スコアゲージを円形リングで描画（ダッシュボード風）
     function drawScoreGauge(currentCount, maxCount = 37) {
       const canvas = document.getElementById('scoreGauge');
       if (!canvas) return;
-      canvas.width = 200;
-      canvas.height = 120;
+      const size = 130;
+      canvas.width = size;
+      canvas.height = size;
       const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, size, size);
+      const cx = size / 2, cy = size / 2, r = 54, lw = 12;
       const rate = Math.min(currentCount / maxCount, 1);
+      const start = -Math.PI / 2;
 
-      // 背景（灰色）
-      ctx.fillStyle = '#e5e7eb';
-      ctx.fillRect(10, 30, 180, 20);
+      // トラック（背景円）
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = '#ede9fe';
+      ctx.lineWidth = lw;
+      ctx.stroke();
 
-      // 進捗（紫色）
-      ctx.fillStyle = '#7c3aed';
-      ctx.fillRect(10, 30, 180 * rate, 20);
+      // 進捗アーク（グラデーション）
+      const grad = ctx.createLinearGradient(0, 0, size, size);
+      grad.addColorStop(0, '#6366F1');
+      grad.addColorStop(1, '#EC4899');
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, start, start + Math.PI * 2 * rate);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = lw;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
 
-      // 枠線
-      ctx.strokeStyle = '#d1d5db';
-      ctx.lineWidth = 1;
-      ctx.strokeRect(10, 30, 180, 20);
+    // 主要指標を算出して表示
+    function renderMetrics(budget, current, target) {
+      // 着回し力: アイテムが理想数に近いほど高い（最大92%）
+      const versatile = Math.round(70 + Math.min(target / 37, 1) * 22);
+      // コスパ: 1点あたり予算が高いほど質に投資＝高評価（上限90%）
+      const pricePerItem = target > 0 ? budget / target : 0;
+      const cost = Math.round(Math.max(55, Math.min(90, 55 + pricePerItem / 200)));
+      // 季節適応: ニュートラル中心の構成を前提に安定値
+      const season = Math.round(72 + Math.min(target / 37, 1) * 16);
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      set('mItems', `${target}点`);
+      set('mVersatile', `${versatile}%`);
+      set('mCost', `${cost}%`);
+      set('mSeason', `${season}%`);
 
-      // テキスト
-      ctx.fillStyle = '#374151';
-      ctx.font = 'bold 14px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(`${currentCount}/${maxCount}`, 100, 75);
-
-      // %表示
-      ctx.fillStyle = '#7c3aed';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText(`${Math.round(rate * 100)}%`, 100, 105);
+      // スコアに応じた見出し
+      const headline = document.getElementById('scoreHeadline');
+      if (headline) {
+        if (versatile >= 88) headline.textContent = 'バランスのとれた理想的な構成です！';
+        else if (versatile >= 80) headline.textContent = 'あと少しで理想のワードローブに';
+        else headline.textContent = 'これから整えていきましょう';
+      }
     }
 
     // M6: 目標保存
@@ -729,13 +768,14 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
     function calculate(){
       const vals=CFG.inputs.map(id=>parseFloat(document.getElementById(id)?.value)||0);
       if(!vals[0]){ alert(CFG.error); return; }
-      const {result,detail,breakdown,target}=calcLogic(vals);
-      document.getElementById('output').textContent=typeof result==='number'?result.toLocaleString():result;
+      const {detail,breakdown,target}=calcLogic(vals);
+      document.getElementById('output').textContent = target;
       const d=document.getElementById('detail'); if(d) d.textContent=detail||'';
 
-      // M4: グラフ描画
+      // M4: 円形ゲージ描画＋主要指標
       drawScoreGauge(target);
-      document.getElementById('scoreText').textContent = `スコア: ${target}点 / 37点`;
+      renderMetrics(vals[0], vals[1], target);
+      document.getElementById('scoreText').textContent = `理想のカプセル数は${target}点。37点満点中${Math.round(Math.min(target/37,1)*100)}%の充足度です。`;
 
       // M6: 目標達成度表示
       showAchievementUI(target);
